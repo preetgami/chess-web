@@ -1,0 +1,8 @@
+.row-board{
+    display: flex;
+}
+.center-board{
+  transform: translate(30vw, 10vh);
+  padding: 10px;
+
+}
