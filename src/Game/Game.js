@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Board from '../Board/Board';
 function Game() {
-  
+    const[turn,setTurn]=useState([1])
 
     return (
         <div>
+
            
-            <Board/>
+            <Board turn={turn} setTurn={setTurn}/>
         </div>
   )
 }

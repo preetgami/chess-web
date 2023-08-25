@@ -5,6 +5,7 @@ export default function generateBoard(reveal) {
     for (let i = 0; i < 8; i++) {
         let x = [];
         for (let j = 0; j < 8; j++) {
+            
             if (i === 1) {
                 x.push(<Box key={i + j} i={i} j={j} empty={false} piece={'\u265F'} reveal={reveal} side={"black"} />)
             }
@@ -12,13 +13,17 @@ export default function generateBoard(reveal) {
                 x.push(<Box key={i + j} i={i} j={j} empty={false} piece={'\u2659'} reveal={reveal} side={"white"} />)
 
             }
+            
             else {
 
                 let piece = null;
                 let side = null;
+                /*
                 if (i === 0 && (j === 0 || j === 7)) {
                     piece = '\u265C'; // Rook
                     side = "black"
+                }
+                
                 } else if (i === 0 && (j === 1 || j === 6)) {
                     piece = "\u265E"; // Knight
                     side = "black"
@@ -50,15 +55,15 @@ export default function generateBoard(reveal) {
                     side = "white"
                     piece = "\u2654"; // King
                 }
-
+                */
 
                 x.push(<Box key={i + j} i={i} j={j} empty={true} piece={piece} reveal={reveal} side={side} />)
 
-            }
-        }
-
+            }}
         newB.push(x)
 
-    }
+        }
+
     return newB;
-}
+
+    }

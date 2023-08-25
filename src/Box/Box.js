@@ -23,7 +23,7 @@ function Box({ i, j, piece,empty,reveal,side}) {
 
   return (
 
-      <div className='box-dark' style={{ background: color }} onClick={() => reveal(i, j)}>{piece}</div>
+      <div className='box-dark' style={{ background: color }} onClick={() => reveal(i, j)}> {piece}</div>
       
   )
 }

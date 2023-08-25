@@ -1,6 +1,8 @@
+
 import Pawn from "./Pawn";
 import React from "react";
-export function handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes) {
+export function handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes,turn,setTurn) {
+ 
 if (current.length === 2) {
     const updatedBoard = [...board];
 
@@ -23,6 +25,9 @@ if (current.length === 2) {
             console.log(Pawn(first, last, 6, goingtopeice,goingtopeicecolor), "white")
             console.log(goingtopeice)
             if (Pawn(first, last, 6, goingtopeice,goingtopeicecolor)) {
+                if (board[first.i][first.j].props.side==='white' && turn!=1){
+                    return false
+                }
                 console.log("In white")
                 //case when enpassent
                 if (first.j !== last.j && board[first.i][last.j].props.piece != null && board[first.i][last.j].props.side !=="white" && last.i===2) {
@@ -78,6 +83,7 @@ if (current.length === 2) {
                 }
                 setBoard(updatedBoard);
                 setcurrent([]);
+                setTurn(prev=> prev==1?2:1)
             }
 
 
@@ -85,6 +91,9 @@ if (current.length === 2) {
         if (board[first.i][first.j].props.piece === "\u265F") {
             console.log(Pawn(first, last, 1, goingtopeice), "black")
             if (Pawn(first, last, 1, goingtopeice,goingtopeicecolor)) {
+                if (board[first.i][first.j].props.side === 'black' && turn != 2) {
+                    return false
+                }
                 //en passent
                 if (first.j !== last.j && board[first.i][last.j].props.piece != null && board[first.i][last.j].props.side !== "black" && last.i === 5) {
                     let taken = board[first.i][last.j].props.piece
@@ -135,6 +144,8 @@ if (current.length === 2) {
                 }
                 setBoard(updatedBoard);
                 setcurrent([]);
+                setTurn(prev => prev == 1 ? 2 : 1)
+
             }
 
 

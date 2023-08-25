@@ -3,7 +3,8 @@ import generateBoard from "./Generateboard"
 import "./Board.css"
 import { useState } from 'react';
 import { handlePawnmovement } from '../Valid/Pawn/PawnMovement';
-function Board() {
+import PawnVisualizer from '../visualizer/pawns/Pawnvisualize';
+function Board({turn,setTurn}) {
     //board
     const [board,setBoard]=useState([])
     //what white captures
@@ -12,7 +13,8 @@ function Board() {
     const [blacktakes, setblacktakes] = useState([])
     //what move is being done
     const [current, setcurrent] = useState([]);
-
+    //VIS PAW
+    const [showPawnVisualizer, setShowPawnVisualizer] = useState(false);
     //moving from where to where
     function reveal(x,y){
         setcurrent(prevCurrent => 
@@ -22,10 +24,26 @@ function Board() {
     )
     
 }
+    useEffect(() => {
+        if (current.length === 1) {
+            let first = current[0];
+            console.log(board[first.i][first.j].props.piece)
+
+            if (board[first.i][first.j].props.piece === '\u2659' || board[first.i][first.j].props.piece === '\u265F') {
+                setShowPawnVisualizer(true);
+            } else {
+                setShowPawnVisualizer(false);
+            }
+        } else {
+            setShowPawnVisualizer(false);
+        }
+    }, [board, current]);
+  
     //handle pawn movement
     useEffect(() => {
         //need checks to see it is a pawn,rook,etc, and whose turn it is and whether theyve picked the right peice.
-        handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes)
+        
+        handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes,turn,setTurn)
     }
 ,[board,current])
     //console.log(whitetakes)
@@ -38,18 +56,25 @@ function Board() {
 
    
 
-    
+    console.log('viz',showPawnVisualizer)
 
     return (
         <div className='center-board'>
+            Whose Turn: {turn}
             <div className='taken-peices'>
                 Black: 
                 {blacktakes}
 
             </div>
-           {board.map((row,rowid)=> (
-           <div className='row-board' key={rowid}>{row}</div>
-           ))}
+            <div  className="board-container">
+                {board.map((row, rowid) => (
+                    <div className='row-board' key={rowid}>{row}</div>
+
+                ))}
+                {showPawnVisualizer && <PawnVisualizer board={board} first={current[0]} setShowPawnVisualizer={setShowPawnVisualizer} />}
+
+            </div>
+          
            
             <div className='taken-peices'> 
             White:

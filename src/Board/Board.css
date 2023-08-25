@@ -4,6 +4,7 @@
 .center-board{
   transform: translate(30vw, 1vh);
   padding: 0px;
+  position: absolute;
 
 }
 .taken-peices{
@@ -14,4 +15,9 @@
   background-color: rgb(0, 0, 0);
   width: 80vh;
   color:rgb(136, 136, 136);
+}
+/* Style for the board container */
+.board-container {
+  position: relative;
+  /* Add other styles as needed */
 }
