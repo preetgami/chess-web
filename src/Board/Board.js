@@ -3,6 +3,8 @@ import generateBoard from "./Generateboard"
 import "./Board.css"
 import { useState } from 'react';
 import { handlePawnmovement } from '../Valid/Pawn/PawnMovement';
+import { handleRookmovement } from '../Valid/Rook/handlerookmovement';
+
 import PawnVisualizer from '../visualizer/pawns/Pawnvisualize';
 function Board({turn,setTurn}) {
     //board
@@ -42,9 +44,22 @@ function Board({turn,setTurn}) {
     //handle pawn movement
     useEffect(() => {
         //need checks to see it is a pawn,rook,etc, and whose turn it is and whether theyve picked the right peice.
-        
-        handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes,turn,setTurn)
-    }
+        if (current.length === 2) {
+            let first = current[0];
+            console.log(board[first.i][first.j].props.piece)
+
+            if (board[first.i][first.j].props.piece === '\u2659' || board[first.i][first.j].props.piece === '\u265F') {
+                console.log("In")
+                handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes,turn,setTurn)
+            }
+            else if (board[first.i][first.j].props.piece === '\u265C' || board[first.i][first.j].props.piece === '\u2656'){
+                console.log(current[0].i, current[0].j)
+
+                handleRookmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn)
+
+            }
+
+    }}
 ,[board,current])
     //console.log(whitetakes)
 
@@ -56,7 +71,7 @@ function Board({turn,setTurn}) {
 
    
 
-    console.log('viz',showPawnVisualizer)
+    //console.log('viz',showPawnVisualizer)
 
     return (
         <div className='center-board'>

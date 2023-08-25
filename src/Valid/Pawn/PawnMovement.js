@@ -11,7 +11,6 @@ if (current.length === 2) {
     //console.log(first.i === last.i && first.j === last.j , "frist-last")
     let blacklastmove = JSON.parse(localStorage.getItem("black_2_pawn"));
     let whitelastmove = JSON.parse(localStorage.getItem("white_2_pawn"));
-
     
     if (!(first.i === last.i && first.j === last.j)) {
         //console.log(board[last.i][last.j], "frist")
@@ -89,7 +88,7 @@ if (current.length === 2) {
 
         }
         if (board[first.i][first.j].props.piece === "\u265F") {
-            console.log(Pawn(first, last, 1, goingtopeice), "black")
+            console.log(Pawn(first, last, 1, goingtopeice, goingtopeicecolor), "black")
             if (Pawn(first, last, 1, goingtopeice,goingtopeicecolor)) {
                 if (board[first.i][first.j].props.side === 'black' && turn != 2) {
                     return false
@@ -135,7 +134,8 @@ if (current.length === 2) {
                     const updatedElement2 = React.cloneElement(board[first.i][first.j], {
                         ...board[first.i][first.j].props,
                         piece: null,
-                        piece: null
+                        side: null,
+
 
                     })
 

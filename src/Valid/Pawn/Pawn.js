@@ -1,4 +1,3 @@
-let  white_2_pawn=[];
 
 export default function Pawn(start, finish, row, goingtopeice,color) {
     //white pawn
@@ -7,6 +6,7 @@ export default function Pawn(start, finish, row, goingtopeice,color) {
         return false
     }
 
+    console.log("errr0r here")
 
     
     if (row===6){
@@ -38,7 +38,7 @@ export default function Pawn(start, finish, row, goingtopeice,color) {
                         return true
                     }
             }
-                else if (localStorage.getItem("black_2_pawn") !== null || localStorage.getItem("black_2_pawn") !== "") {
+                else if (localStorage.getItem("black_2_pawn") !== null && localStorage.getItem("black_2_pawn") !== "") {
                     let blacklastmove = JSON.parse(localStorage.getItem("black_2_pawn"));
                     if (blacklastmove.i === start.i && (Math.abs(start.j - blacklastmove.j) === 1) && finish.j === blacklastmove.j) {
                         return true
