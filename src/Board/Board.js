@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react'
-import Box from "../Box/Box"
+import generateBoard from "./Generateboard"
 import "./Board.css"
 import { useState } from 'react';
-import Pawn from "../Valid/Pawn"
-
+import { handlePawnmovement } from '../Valid/Pawn/PawnMovement';
 function Board() {
+    //board
     const [board,setBoard]=useState([])
- 
+    //what white captures
+    const [whitetakes,setwhitetakes]=useState([])
+    //what black captures
+    const [blacktakes, setblacktakes] = useState([])
+    //what move is being done
     const [current, setcurrent] = useState([]);
+
+    //moving from where to where
     function reveal(x,y){
         setcurrent(prevCurrent => 
             prevCurrent.length>=2 ?
@@ -16,152 +22,40 @@ function Board() {
     )
     
 }
+    //handle pawn movement
     useEffect(() => {
-    if (current.length === 2) {
-        const updatedBoard = [...board];
-
-        let first = current[0];
-        let last = current[1];
-        //console.log(first.i === last.i && first.j === last.j , "frist-last")
-
-        if (!(first.i === last.i && first.j === last.j)){
-            //console.log(board[last.i][last.j], "frist")
-            let goingtopeice = board[last.i][last.j].props.piece
-
-            //check if is a white pawn
-            //check valid pawn movement
-            if (board[first.i][first.j].props.piece ==="\u2659"){
-                console.log(Pawn(first, last, 6),"white")
-                console.log(goingtopeice)
-                if (Pawn(first, last, 6, goingtopeice) ){
-
-                    //case when enpassent
-                    if (first.j!==last.j){
-                        const updatedElement = React.cloneElement(board[last.i][last.j], {
-                            ...board[last.i][last.j].props,
-                            piece: board[first.i][first.j].props.piece
-                        })
-                        const updatedElement2 = React.cloneElement(board[first.i][first.j], {
-                            ...board[first.i][first.j].props,
-                            piece: null
-                        })
-                        const updatedElement3 = React.cloneElement(board[first.i][last.j], {
-                            ...board[first.i][last.j].props,
-                            piece: null
-                        })
-
-                        board[last.i][last.j] = updatedElement;
-                        board[first.i][first.j] = updatedElement2;
-                        board[first.i][last.j] = updatedElement3;
-
-                    }
-                    else{
-                    const updatedElement = React.cloneElement(board[last.i][last.j], {
-                        ...board[last.i][last.j].props,
-                        piece: board[first.i][first.j].props.piece
-                    })
-                    const updatedElement2 = React.cloneElement(board[first.i][first.j], {
-                        ...board[first.i][first.j].props,
-                        piece: null
-                    })
-                    board[last.i][last.j] = updatedElement;
-                    board[first.i][first.j] = updatedElement2;
-                }
-                    setBoard(updatedBoard);
-                    setcurrent([]);
-                }
-
-
-            }
-            if (board[first.i][first.j].props.piece === "\u265F") {
-                console.log(Pawn(first, last, 1, goingtopeice),"black")
-                if (Pawn(first, last, 1,goingtopeice)) {
-                    if (first.j !== last.j) {
-                        const updatedElement = React.cloneElement(board[last.i][last.j], {
-                            ...board[last.i][last.j].props,
-                            piece: board[first.i][first.j].props.piece
-                        })
-                        const updatedElement2 = React.cloneElement(board[first.i][first.j], {
-                            ...board[first.i][first.j].props,
-                            piece: null
-                        })
-                        const updatedElement3 = React.cloneElement(board[first.i][last.j], {
-                            ...board[first.i][last.j].props,
-                            piece: null
-                        })
-
-                        board[last.i][last.j] = updatedElement;
-                        board[first.i][first.j] = updatedElement2;
-                        board[first.i][last.j] = updatedElement3;
-
-                    }else{
-                    const updatedElement = React.cloneElement(board[last.i][last.j], {
-                        ...board[last.i][last.j].props,
-                        piece: board[first.i][first.j].props.piece
-                    })
-                    const updatedElement2 = React.cloneElement(board[first.i][first.j], {
-                        ...board[first.i][first.j].props,
-                        piece: null
-                    })
-                    board[last.i][last.j] = updatedElement;
-                    board[first.i][first.j] = updatedElement2;
-                }
-                    setBoard(updatedBoard);
-                    setcurrent([]);
-                }
-
-
-            }
-            
-        }
-        //console.log((localStorage.getItem('white_2_pawn')),"w");
-        //console.log((localStorage.getItem('black_2_pawn')), "b");
-
-
+        //need checks to see it is a pawn,rook,etc, and whose turn it is and whether theyve picked the right peice.
+        handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes)
     }
-},[board,current])
-    console.log(current)
+,[board,current])
+    //console.log(whitetakes)
 
-
+    //create board
     useEffect(() => {
-        generateBoard();
-        return
+        const newb = generateBoard(reveal);
+        setBoard(newb)
     }, []);
 
-    function generateBoard(){
-        const newB=[]
-    for (let i = 0; i < 8; i++) {
-        let x = [];
-        for (let j = 0; j < 8; j++) {
-            if (i===1){
-                x.push(<Box key={i + j} i={i} j={j} empty={false} piece={'\u265F'}  reveal={reveal} side={"black"}/>)
-            }
-            else if( i===6){
-                x.push(<Box key={i + j} i={i} j={j} empty={false} piece={'\u2659'} reveal={reveal} side={"white"} />)
+   
 
-            }
-            else{
-                x.push(<Box key={i + j} i={i} j={j} empty={true} piece={null} reveal={reveal} side={null} />)
-
-            }
-        }
-
-        newB.push(x)
-
-    }
-    setBoard(newB);
-}
     
 
     return (
         <div className='center-board'>
-            
+            <div className='taken-peices'>
+                Black: 
+                {blacktakes}
+
+            </div>
            {board.map((row,rowid)=> (
            <div className='row-board' key={rowid}>{row}</div>
            ))}
            
+            <div className='taken-peices'> 
+            White:
+                {whitetakes}
 
-
+            </div>
 
         </div>
     )

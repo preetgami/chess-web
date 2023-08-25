@@ -2,7 +2,16 @@
     display: flex;
 }
 .center-board{
-  transform: translate(30vw, 10vh);
-  padding: 10px;
+  transform: translate(30vw, 1vh);
+  padding: 0px;
 
+}
+.taken-peices{
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  font-size: 30px;
+  background-color: rgb(0, 0, 0);
+  width: 80vh;
+  color:rgb(136, 136, 136);
 }
