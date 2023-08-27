@@ -29,6 +29,13 @@ function Board({turn,setTurn}) {
     //cureentking pos black
     const [currentblackking, setcurrentblackking] = useState([0,4])
 
+    //winner
+    //pawn update at end
+
+
+    //done
+    //castling
+    //king and queen side
 
     //moving from where to where
     function reveal(x,y){
@@ -57,6 +64,7 @@ function Board({turn,setTurn}) {
     //handle movement
     //bishop
     //console.log(currentblackking,currentwhiteking)
+    console.log(board)
     useEffect(() => {
         //need checks to see it is a pawn,rook,etc, and whose turn it is and whether theyve picked the right peice.
         if (current.length === 2) {
@@ -71,41 +79,41 @@ function Board({turn,setTurn}) {
                 //pawn
                 if (board[first.i][first.j].props.piece === '\u2659' || board[first.i][first.j].props.piece === '\u265F') {
                     console.log("In")
-                    handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes,turn,setTurn)
+                    handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck, currentblackking, currentwhiteking)
                 }
                 //rook
                 else if (board[first.i][first.j].props.piece === '\u265C' || board[first.i][first.j].props.piece === '\u2656'){
                     //console.log(current[0].i, current[0].j)
 
-                    handleRookmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn)
+                    handleRookmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck, currentblackking, currentwhiteking)
 
                 }
                 //bishop
                 else if (board[first.i][first.j].props.piece === '\u2657' || board[first.i][first.j].props.piece === '\u265D') {
                     //console.log(current[0].i, current[0].j)
-
-                    handleBishopmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn)
+                    //done kingcheck
+                    handleBishopmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck,currentblackking,currentwhiteking)
 
                 }
                 //knight
                 else if (board[first.i][first.j].props.piece === '\u2658' || board[first.i][first.j].props.piece === '\u265E') {
                     //console.log(current[0].i, current[0].j)
 
-                    handleKnightmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn)
+                    handleKnightmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck, currentblackking, currentwhiteking)
 
                 }
                 //queen
                 else if (board[first.i][first.j].props.piece === '\u2655' || board[first.i][first.j].props.piece === '\u265B') {
                     //console.log(current[0].i, current[0].j)
 
-                    handleQueenmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn)
+                    handleQueenmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck, currentblackking, currentwhiteking)
 
                 }
                 //king
                 else if (board[first.i][first.j].props.piece === '\u2654' || board[first.i][first.j].props.piece === '\u265A') {
                     //console.log(current[0].i, current[0].j)
 
-                    handleKingmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn,setcurrentblackking,setcurrentwhiteking)
+                    handleKingmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck, setcurrentblackking, setcurrentwhiteking,currentblackking, currentwhiteking)
 
                 }
             

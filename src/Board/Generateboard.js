@@ -6,10 +6,10 @@ export default function generateBoard(reveal) {
         let x = [];
         for (let j = 0; j < 8; j++) {
             
-            if (i === 4) {
+            if (i === 1) {
                 x.push(<Box key={i + j} i={i} j={j} empty={true} piece={'\u265F'} reveal={reveal} side={"black"} />)
             }
-            else if (i === 3) {
+            else if (i === 6) {
                 x.push(<Box key={i + j} i={i} j={j} empty={true} piece={'\u2659'} reveal={reveal} side={"white"} />)
 
             }
@@ -23,15 +23,15 @@ export default function generateBoard(reveal) {
                     side = "black"
                 
                 
-                } else if (i === 0 && (j === 1 || j === 6)) {
+                } else if (i === 2 && (j === 1 || j === 6)) {
                     piece = "\u265E"; // Knight
                     side = "black"
 
-                } else if (i === 0 && (j === 2 || j === 5)) {
+                } else if (i === 2 && (j === 2 || j === 5)) {
                     piece = "\u265D"; // Bishop
                     side = "black"
 
-                } else if (i === 0 && j === 3) {
+                } else if (i === 4 && j === 3) {
                     side = "black"
                     piece = "\u265B"; // Queen
                 } else if (i === 0 && j === 4) {
@@ -41,13 +41,13 @@ export default function generateBoard(reveal) {
                 } else if (i === 7 && (j === 0 || j === 7)) {
                     side = "white"
                     piece = "\u2656"; // Rook
-                } else if (i === 7 && (j === 1 || j === 6)) {
+                } else if (i ===3 && (j === 1 || j === 6)) {
                     side = "white"
                     piece = "\u2658"; // Knight
-                } else if (i === 7 && (j === 2 || j === 5)) {
+                } else if (i === 5 && (j === 2 || j === 5)) {
                     side = "white"
                     piece = "\u2657"; // Bishop
-                } else if (i === 7 && j === 3) {
+                } else if (i === 5 && j === 3) {
                     side = "white"
                     piece = "\u2655"; // Queen
                 } else if (i === 7 && j === 4) {

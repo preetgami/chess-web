@@ -2,10 +2,11 @@
 import Rook from "./rook";
 import React from "react";
 
-export function handleRookmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn) {
+export function handleRookmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck, currentblackking, currentwhiteking) {
 
     if (current.length === 2) {
-        const updatedBoard = [...board];
+        const updatedBoard = board.map(row => [...row]);
+
 
         let first = current[0];
         let last = current[1];
@@ -30,32 +31,36 @@ export function handleRookmovement(board, current, setBoard, setcurrent, setwhit
                   //  console.log("In white")
                    
                     
+                        
+                        const updatedElement = React.cloneElement(board[last.i][last.j], {
+                            ...board[last.i][last.j].props,
+                            piece: board[first.i][first.j].props.piece,
+                            side: board[first.i][first.j].props.side,
+                            empty:false
+
+                        })
+                        const updatedElement2 = React.cloneElement(board[first.i][first.j], {
+                            ...board[first.i][first.j].props,
+                            side: null,
+                            piece: null,
+                            empty:true
+                        })
+
+
+
+                    updatedBoard[last.i][last.j] = updatedElement;
+                    updatedBoard[first.i][first.j] = updatedElement2;
+                    if (!isyourkingincheck(updatedBoard, "white", currentblackking, currentwhiteking)) {
                         if (board[last.i][last.j].props.piece != null) {
                             // console.log("here", board[last.i][last.j].props.piece)
                             let taken = board[last.i][last.j].props.piece
                             setwhitetakes(prev => [...prev, taken])
 
                         }
-                        const updatedElement = React.cloneElement(board[last.i][last.j], {
-                            ...board[last.i][last.j].props,
-                            piece: board[first.i][first.j].props.piece,
-                            side: board[first.i][first.j].props.side
-
-                        })
-                        const updatedElement2 = React.cloneElement(board[first.i][first.j], {
-                            ...board[first.i][first.j].props,
-                            side: null,
-                            piece: null
-                        })
-
-
-
-                        board[last.i][last.j] = updatedElement;
-                        board[first.i][first.j] = updatedElement2;
-                    
                         setBoard(updatedBoard);
                         setcurrent([]);
                         setTurn(prev => prev == 1 ? 2 : 1)
+                    }
                 }
 
 
@@ -67,31 +72,36 @@ export function handleRookmovement(board, current, setBoard, setcurrent, setwhit
                         return false
                     }
                      
-                        if (board[last.i][last.j].props.piece != null) {
-                            let taken = board[last.i][last.j].props.piece
-                            setblacktakes(prev => [...prev, taken])
-
-                        }
+                        
                         const updatedElement = React.cloneElement(board[last.i][last.j], {
                             ...board[last.i][last.j].props,
                             piece: board[first.i][first.j].props.piece,
-                            side: board[first.i][first.j].props.side
+                            side: board[first.i][first.j].props.side,
+                            empty:false
 
                         })
                         const updatedElement2 = React.cloneElement(board[first.i][first.j], {
                             ...board[first.i][first.j].props,
                             piece: null,
-                            side: null
+                            side: null,
+                            empty:true
 
 
                         })
 
-                        board[last.i][last.j] = updatedElement;
-                        board[first.i][first.j] = updatedElement2;
+                    updatedBoard[last.i][last.j] = updatedElement;
+                    updatedBoard[first.i][first.j] = updatedElement2;
                     
-                    setBoard(updatedBoard);
-                    setcurrent([]);
-                    setTurn(prev => prev == 1 ? 2 : 1)
+                    if (!isyourkingincheck(updatedBoard, "black", currentblackking, currentwhiteking)) {
+                        if (board[last.i][last.j].props.piece != null) {
+                            let taken = board[last.i][last.j].props.piece
+                            setblacktakes(prev => [...prev, taken])
+
+                        }
+                        setBoard(updatedBoard);
+                        setcurrent([]);
+                        setTurn(prev => prev == 1 ? 2 : 1)
+                    }
 
                     }
 

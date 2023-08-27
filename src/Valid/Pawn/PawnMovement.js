@@ -1,16 +1,15 @@
 
 import Pawn from "./Pawn";
 import React from "react";
-export function handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes,turn,setTurn) {
+export function handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck, currentblackking, currentwhiteking) {
  
 if (current.length === 2) {
-    const updatedBoard = [...board];
+    const updatedBoard = board.map(row => [...row]);
+
 
     let first = current[0];
     let last = current[1];
-    //console.log(first.i === last.i && first.j === last.j , "frist-last")
-    let blacklastmove = JSON.parse(localStorage.getItem("black_2_pawn"));
-    let whitelastmove = JSON.parse(localStorage.getItem("white_2_pawn"));
+    
     
     if (!(first.i === last.i && first.j === last.j)) {
         //console.log(board[last.i][last.j], "frist")
@@ -48,21 +47,21 @@ if (current.length === 2) {
                     })
                     console.log("In passent")
                     //console.log("here pass", board[first.i][last.j].props.piece)
-                    let taken = board[first.i][last.j].props.piece;
-                    setwhitetakes(prev => [...prev, taken])
+                    
                     // console.log(whitetakes)
-                    board[last.i][last.j] = updatedElement;
-                    board[first.i][first.j] = updatedElement2;
-                    board[first.i][last.j] = updatedElement3;
-
+                    updatedBoard[last.i][last.j] = updatedElement;
+                    updatedBoard[first.i][first.j] = updatedElement2;
+                    updatedBoard[first.i][last.j] = updatedElement3;
+                    if (!isyourkingincheck(updatedBoard, "white", currentblackking, currentwhiteking)) {
+                        let taken = board[first.i][last.j].props.piece;
+                        setwhitetakes(prev => [...prev, taken])
+                        setBoard(updatedBoard);
+                        setcurrent([]);
+                        setTurn(prev => prev == 1 ? 2 : 1)
+                    }
                 }
                 else {
-                    if (board[last.i][last.j].props.piece != null) {
-                        // console.log("here", board[last.i][last.j].props.piece)
-                        let taken = board[last.i][last.j].props.piece
-                        setwhitetakes(prev => [...prev, taken])
-
-                    }
+                   
                     const updatedElement = React.cloneElement(board[last.i][last.j], {
                         ...board[last.i][last.j].props,
                         piece: board[first.i][first.j].props.piece,
@@ -77,12 +76,21 @@ if (current.length === 2) {
 
 
 
-                    board[last.i][last.j] = updatedElement;
-                    board[first.i][first.j] = updatedElement2;
+                    updatedBoard[last.i][last.j] = updatedElement;
+                    updatedBoard[first.i][first.j] = updatedElement2;
+                    if (!isyourkingincheck(updatedBoard, "white", currentblackking, currentwhiteking)) {
+                        if (board[last.i][last.j].props.piece != null) {
+                            // console.log("here", board[last.i][last.j].props.piece)
+                            let taken = board[last.i][last.j].props.piece
+                            setwhitetakes(prev => [...prev, taken])
+
+                        }
+                        setBoard(updatedBoard);
+                        setcurrent([]);
+                        setTurn(prev => prev == 1 ? 2 : 1)
+                    }
                 }
-                setBoard(updatedBoard);
-                setcurrent([]);
-                setTurn(prev=> prev==1?2:1)
+               
             }
 
 
@@ -115,16 +123,19 @@ if (current.length === 2) {
                         side:null
                     })
 
-                    board[last.i][last.j] = updatedElement;
-                    board[first.i][first.j] = updatedElement2;
-                    board[first.i][last.j] = updatedElement3;
+                    updatedBoard[last.i][last.j] = updatedElement;
+                    updatedBoard[first.i][first.j] = updatedElement2;
+                    updatedBoard[first.i][last.j] = updatedElement3;
+                    if (!isyourkingincheck(updatedBoard, "black", currentblackking, currentwhiteking)) {
+                        let taken = board[first.i][last.j].props.piece;
+                        setwhitetakes(prev => [...prev, taken])
+                        setBoard(updatedBoard);
+                        setcurrent([]);
+                        setTurn(prev => prev == 1 ? 2 : 1)
+                    }
 
                 } else {
-                    if (board[last.i][last.j].props.piece != null) {
-                        let taken = board[last.i][last.j].props.piece
-                        setblacktakes(prev => [...prev, taken])
-
-                    }
+                   
                     const updatedElement = React.cloneElement(board[last.i][last.j], {
                         ...board[last.i][last.j].props,
                         piece: board[first.i][first.j].props.piece,
@@ -139,13 +150,21 @@ if (current.length === 2) {
 
                     })
 
-                    board[last.i][last.j] = updatedElement;
-                    board[first.i][first.j] = updatedElement2;
-                }
-                setBoard(updatedBoard);
-                setcurrent([]);
-                setTurn(prev => prev == 1 ? 2 : 1)
+                    updatedBoard[last.i][last.j] = updatedElement;
+                    updatedBoard[first.i][first.j] = updatedElement2;
+                
+                if (!isyourkingincheck(updatedBoard, "black", currentblackking, currentwhiteking)) {
+                    if (board[last.i][last.j].props.piece != null) {
+                        // console.log("here", board[last.i][last.j].props.piece)
+                        let taken = board[last.i][last.j].props.piece
+                        setwhitetakes(prev => [...prev, taken])
 
+                    }
+                    setBoard(updatedBoard);
+                    setcurrent([]);
+                    setTurn(prev => prev == 1 ? 2 : 1)
+                }
+            }
             }
 
 

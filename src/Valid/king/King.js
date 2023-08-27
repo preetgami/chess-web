@@ -15,11 +15,12 @@ export default function King(start, finish, row, goingtopeice, color, board) {
     if (board[start.i][start.j].props.side === 'black' && color == "black") {
         return false
     }
-    let coldown=null;
-    let colup=null;
-    let rowleft=null;
-    let rowright=null;
+    let coldown=true;
+    let colup = true;
+    let rowleft = true;
+    let rowright = true;
 
+    
     //need to check if the move wont put the king in check
     if (Math.abs(finish.i - start.i) <= 1 && Math.abs(finish.j - start.j) <= 1){
         //check if new finish puts it in ddanger.
@@ -179,10 +180,10 @@ export default function King(start, finish, row, goingtopeice, color, board) {
         //+-
         //-+
         //--
-        let plusplus=null;
-        let plusminus=null;
-        let minusplus=null;
-        let minusminus =null;
+        let plusplus = true;
+        let plusminus = true;
+        let minusplus = true;
+        let minusminus = true;
         for (let i = finish.i+1, j = finish.j +1; i < 8 && j < 8; i++, j++) {
             console.log(i,j,"plusplus")
             plusplus = true

@@ -25,14 +25,13 @@ export function isyourkingincheck(board, yourcolor, currentblackking, currentwhi
 
 function maincheck(finish,board,color){
     //check up to down
-    let coldown = null;
-    let colup = null;
-    let rowleft = null;
-    let rowright = null;
+    let coldown = true;
+    let colup = true;
+    let rowleft = true;
+    let rowright = true;
     for (let i = finish.i+1; i < 8; i++) {
         console.log("checking...up to dwon", i)
         console.log(board[i][finish.j].props.piece)
-        coldown = true;
 
         if (board[i][finish.j].props.piece != null) {
             console.log("innn")
@@ -179,10 +178,10 @@ function maincheck(finish,board,color){
     //+-
     //-+
     //--
-    let plusplus = null;
-    let plusminus = null;
-    let minusplus = null;
-    let minusminus = null;
+    let plusplus = true;
+    let plusminus = true;
+    let minusplus = true;
+    let minusminus = true;
     for (let i = finish.i+1, j = finish.j+1; i < 8 && j < 8; i++, j++) {
         console.log(i, j, "plusplus")
         plusplus = true
@@ -314,7 +313,7 @@ function maincheck(finish,board,color){
         }
     }
     //all horse positions
-    let horsevalid = null;
+    let horsevalid = true;
     const knightMoves = [
         { row: -2, col: -1 },
         { row: -2, col: 1 },
@@ -355,7 +354,7 @@ function maincheck(finish,board,color){
     horsevalid = true;
 
     //need ot check pawn attacks
-    let pawanvalid = null
+    let pawanvalid = true
     if (color === "white") {
         let newr = finish.i - 1
         let newcol = finish.j - 1
@@ -394,7 +393,7 @@ function maincheck(finish,board,color){
         }
     }
     pawanvalid = true;
-    console.log(coldown, colup, rowleft, rowright, plusplus, plusminus, minusplus, minusminus, horsevalid, pawanvalid)
+    console.log(coldown,"coldwon", colup, rowleft, rowright, plusplus, plusminus, minusplus, minusminus, horsevalid, pawanvalid)
     if (coldown && colup && rowleft && rowright && plusplus && plusminus && minusplus && minusminus && horsevalid && pawanvalid) {
         return true
 
