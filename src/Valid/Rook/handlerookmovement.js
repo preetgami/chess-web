@@ -18,16 +18,16 @@ export function handleRookmovement(board, current, setBoard, setcurrent, setwhit
             let goingtopeicecolor = board[last.i][last.j].props.side
             //console.log(board[first.i][first.j],"color")
 
-            //check if is a white pawn
-            //check valid pawn movement
+            //check if is a white rook
+            //check valid rook movement
             if (board[first.i][first.j].props.piece === "\u2656") {
                 console.log(Rook(first, last, 6, goingtopeice, goingtopeicecolor,board), "white")
-                console.log(goingtopeice,"here")
+                //console.log(goingtopeice,"here")
                 if (Rook(first, last, 6, goingtopeice, goingtopeicecolor,board)) {
                     if (board[first.i][first.j].props.side === 'white' && turn != 1) {
                         return false
                     }
-                    console.log("In white")
+                  //  console.log("In white")
                    
                     
                         if (board[last.i][last.j].props.piece != null) {

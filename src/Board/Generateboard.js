@@ -5,25 +5,24 @@ export default function generateBoard(reveal) {
     for (let i = 0; i < 8; i++) {
         let x = [];
         for (let j = 0; j < 8; j++) {
-            /*
-            if (i === 1) {
-                x.push(<Box key={i + j} i={i} j={j} empty={false} piece={'\u265F'} reveal={reveal} side={"black"} />)
+            
+            if (i === 4) {
+                x.push(<Box key={i + j} i={i} j={j} empty={true} piece={'\u265F'} reveal={reveal} side={"black"} />)
             }
-            else if (i === 6) {
-                x.push(<Box key={i + j} i={i} j={j} empty={false} piece={'\u2659'} reveal={reveal} side={"white"} />)
+            else if (i === 3) {
+                x.push(<Box key={i + j} i={i} j={j} empty={true} piece={'\u2659'} reveal={reveal} side={"white"} />)
 
             }
-            
             else {
-*/
+
                 let piece = null;
                 let side = null;
                 
                 if (i === 0 && (j === 0 || j === 7)) {
                     piece = '\u265C'; // Rook
                     side = "black"
-                }
-                /*
+                
+                
                 } else if (i === 0 && (j === 1 || j === 6)) {
                     piece = "\u265E"; // Knight
                     side = "black"
@@ -39,10 +38,10 @@ export default function generateBoard(reveal) {
                     piece = "\u265A"; // King
                     side = "black"
 
-                } */else if (i === 7 && (j === 0 || j === 7)) {
+                } else if (i === 7 && (j === 0 || j === 7)) {
                     side = "white"
                     piece = "\u2656"; // Rook
-                } /*else if (i === 7 && (j === 1 || j === 6)) {
+                } else if (i === 7 && (j === 1 || j === 6)) {
                     side = "white"
                     piece = "\u2658"; // Knight
                 } else if (i === 7 && (j === 2 || j === 5)) {
@@ -55,17 +54,19 @@ export default function generateBoard(reveal) {
                     side = "white"
                     piece = "\u2654"; // King
                 }
-                */
+                
 
                 x.push(<Box key={i + j} i={i} j={j} empty={true} piece={piece} reveal={reveal} side={side} />)
 
             }
+
+        }
         newB.push(x)
 
         }
-
+        return newB;
+    }
         
 
-    return newB;
 
-    }
+    

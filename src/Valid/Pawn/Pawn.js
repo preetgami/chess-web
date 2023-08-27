@@ -6,7 +6,6 @@ export default function Pawn(start, finish, row, goingtopeice,color) {
         return false
     }
 
-    console.log("errr0r here")
 
     
     if (row===6){
