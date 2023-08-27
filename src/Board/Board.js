@@ -10,6 +10,7 @@ import { handleKnightmovement } from '../Valid/Knight/handleKnightmovement';
 import { handleQueenmovement } from '../Valid/Queen/handlequeen';
 import { handleKingmovement } from '../Valid/king/handlekingmovement';
 import { isyourkingincheck } from"../Valid/kingcheck";
+import { checkwinner } from '../winner/checkwinner';
 
 function Board({turn,setTurn}) {
     //board
@@ -29,8 +30,8 @@ function Board({turn,setTurn}) {
     //cureentking pos black
     const [currentblackking, setcurrentblackking] = useState([0,4])
 
+    const [winner,setwinner]=useState(false)
     //winner
-    //pawn update at end
 
 
     //done
@@ -74,7 +75,10 @@ function Board({turn,setTurn}) {
 
             //if your king is in check you have to move it out
            
-                console.log("notnotnotnotnotnotnotnot in check ")
+                //check if possible to move out of this pos
+                
+
+            
                 
                 //pawn
                 if (board[first.i][first.j].props.piece === '\u2659' || board[first.i][first.j].props.piece === '\u265F') {
@@ -116,6 +120,8 @@ function Board({turn,setTurn}) {
                     handleKingmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck, setcurrentblackking, setcurrentwhiteking,currentblackking, currentwhiteking)
 
                 }
+
+           
             
 
     }}
@@ -128,12 +134,31 @@ function Board({turn,setTurn}) {
         setBoard(newb)
     }, []);
 
-   
+    let content = null
+    useEffect(()=>{
+        if (current.length === 2) {
+            let first = current[0];
+            console.log(board[first.i][first.j].props.piece)
+            let yourcolor = turn == 1 ? "white" : "black"
+            if(isyourkingincheck(board, yourcolor, currentblackking, currentwhiteking)){
+                if (checkwinner(board, isyourkingincheck, currentblackking, currentwhiteking, yourcolor)) {
+                    let wincolor = yourcolor == "white" ? "black" : "white"
+                    setwinner(true)
+                    content = <div className='winner'>winnerr {wincolor}</div>
+                    console.log("winnerrrrr " + wincolor)
+
+                }
+    }
+    }}, [current])
+    console.log(winner,"wineer111",content)
+
+    let wincolor = turn==1 ? "black" : "white"
 
     //console.log('viz',showPawnVisualizer)
 
     return (
         <div className='center-board'>
+            {winner && <div className='winner'>winnerr {wincolor}</div>}
             Whose Turn: {turn}
             <div className='taken-peices'>
                 Black: 

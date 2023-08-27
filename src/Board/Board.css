@@ -21,3 +21,9 @@
   position: relative;
   /* Add other styles as needed */
 }
+
+.winner{
+   width: 80vh;
+  font-size: 30px;
+  background-color: aliceblue;
+}

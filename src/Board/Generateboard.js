@@ -6,10 +6,10 @@ export default function generateBoard(reveal) {
         let x = [];
         for (let j = 0; j < 8; j++) {
             
-            if (i === 1) {
+            if (i === 5) {
                 x.push(<Box key={i + j} i={i} j={j} empty={true} piece={'\u265F'} reveal={reveal} side={"black"} />)
             }
-            else if (i === 6) {
+            else if (i === 2) {
                 x.push(<Box key={i + j} i={i} j={j} empty={true} piece={'\u2659'} reveal={reveal} side={"white"} />)
 
             }

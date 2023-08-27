@@ -16,7 +16,7 @@ export default function Rook(start, finish, row, goingtopeice, color,board) {
         return false
     }
 
-    /*
+    
     if (start.i==finish.i){
         if (start.j<finish.j){
             console.log("same horiz, left to right")
@@ -73,7 +73,8 @@ export default function Rook(start, finish, row, goingtopeice, color,board) {
             }
     
 }
-*/
+}
+/*
     const rowDiff = Math.abs(finish.i - start.i);
     const colDiff = Math.abs(finish.j - start.j)
     if ( (start.i === finish.i) || (start.j === finish.j)) {
@@ -98,4 +99,4 @@ export default function Rook(start, finish, row, goingtopeice, color,board) {
 
     return true;
 }
-
+*/

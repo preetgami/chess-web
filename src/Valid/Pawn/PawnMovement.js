@@ -1,4 +1,5 @@
 
+import Box from "../../Box/Box";
 import Pawn from "./Pawn";
 import React from "react";
 export function handlePawnmovement(board, current, setBoard, setcurrent, setwhitetakes, setblacktakes, turn, setTurn, isyourkingincheck, currentblackking, currentwhiteking) {
@@ -61,7 +62,60 @@ if (current.length === 2) {
                     }
                 }
                 else {
-                   
+                    if(last.i==0){
+                        //
+                        const promotionOptions = ["bishop", "knight", "rook", "queen"];
+
+                        const selectedPromotion = prompt("Choose a piece to promote to: " + promotionOptions.join(", "));
+
+                        if (promotionOptions.includes(selectedPromotion)) {
+                            console.log("seleceted")
+                            // Create the new piece element based on the selected promotion
+                            let piece=null
+                            switch(selectedPromotion){
+                                case "bishop":
+                                    piece ="\u2657"
+                                    break;
+                                case "knight":
+                                    piece = "\u2658"
+                                    break;
+                                case "queen":
+                                    piece = "\u2655"
+                                    break;
+                                case "rook":
+                                    piece = "\u2656"
+                                    break;
+                            }
+                            // Update the board with the new piece element
+                            const updatedElement = React.cloneElement(board[last.i][last.j], {
+                                ...board[last.i][last.j].props,
+                                side: board[first.i][first.j].props.side,
+                                piece: piece,
+                            });
+
+                            updatedBoard[last.i][last.j] = updatedElement;
+                            
+                            updatedBoard[first.i][first.j] = React.cloneElement(board[first.i][first.j], {
+                                ...board[first.i][first.j].props,
+                                piece: null,
+                                side: null
+                            });
+                            if (!isyourkingincheck(updatedBoard, "white", currentblackking, currentwhiteking)) {
+                                if (board[last.i][last.j].props.piece != null) {
+                                    // console.log("here", board[last.i][last.j].props.piece)
+                                    let taken = board[last.i][last.j].props.piece
+                                    setwhitetakes(prev => [...prev, taken])
+
+                                }
+                                setBoard(updatedBoard);
+                                setcurrent([]);
+                                setTurn(prev => prev == 1 ? 2 : 1)
+                            }
+                            
+
+                    
+                    }
+                }else{
                     const updatedElement = React.cloneElement(board[last.i][last.j], {
                         ...board[last.i][last.j].props,
                         piece: board[first.i][first.j].props.piece,
@@ -89,6 +143,7 @@ if (current.length === 2) {
                         setcurrent([]);
                         setTurn(prev => prev == 1 ? 2 : 1)
                     }
+                }
                 }
                
             }
@@ -135,7 +190,62 @@ if (current.length === 2) {
                     }
 
                 } else {
-                   
+                    if (last.i == 7) {
+                        //
+                        const promotionOptions = ["bishop", "knight", "rook", "queen"];
+
+                        const selectedPromotion = prompt("Choose a piece to promote to: " + promotionOptions.join(", "));
+
+                        if (promotionOptions.includes(selectedPromotion)) {
+                            console.log("seleceted")
+                            // Create the new piece element based on the selected promotion
+                            let piece = null
+                            switch (selectedPromotion) {
+                                case "bishop":
+                                    piece = "\u265D"
+                                    break;
+                                case "knight":
+                                    piece = "\u265E"
+                                    break;
+                                case "queen":
+                                    piece = "\u265B"
+                                    break;
+                                case "rook":
+                                    piece = "\u265C"
+                                    break;
+                            }
+                            // Update the board with the new piece element
+                            const updatedElement = React.cloneElement(board[last.i][last.j], {
+                                ...board[last.i][last.j].props,
+                                side: board[first.i][first.j].props.side,
+                                piece: piece,
+                            });
+
+                            updatedBoard[last.i][last.j] = updatedElement;
+
+                            updatedBoard[first.i][first.j] = React.cloneElement(board[first.i][first.j], {
+                                ...board[first.i][first.j].props,
+                                piece: null,
+                                side: null
+                            });
+
+                            if (!isyourkingincheck(updatedBoard, "black", currentblackking, currentwhiteking)) {
+                                if (board[last.i][last.j].props.piece != null) {
+                                    // console.log("here", board[last.i][last.j].props.piece)
+                                    let taken = board[last.i][last.j].props.piece
+                                    setwhitetakes(prev => [...prev, taken])
+
+                                }
+                                setBoard(updatedBoard);
+                                setcurrent([]);
+                                setTurn(prev => prev == 1 ? 2 : 1)
+                            }
+
+
+                        }
+                    }
+
+                    else{
                     const updatedElement = React.cloneElement(board[last.i][last.j], {
                         ...board[last.i][last.j].props,
                         piece: board[first.i][first.j].props.piece,
@@ -164,6 +274,7 @@ if (current.length === 2) {
                     setcurrent([]);
                     setTurn(prev => prev == 1 ? 2 : 1)
                 }
+            }
             }
             }
 

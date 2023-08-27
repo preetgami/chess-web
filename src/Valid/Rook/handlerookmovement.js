@@ -29,7 +29,8 @@ export function handleRookmovement(board, current, setBoard, setcurrent, setwhit
                         return false
                     }
                   //  console.log("In white")
-                   
+                    console.log("the rooooooooooook")
+
                     
                         
                         const updatedElement = React.cloneElement(board[last.i][last.j], {

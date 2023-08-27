@@ -5,7 +5,6 @@ export function isyourkingincheck(board, yourcolor, currentblackking, currentwhi
         let kingrow=currentwhiteking[0]
         let kingcol = currentwhiteking[1]
         let finish={i:kingrow,j:kingcol}
-        //returns true if not in check
 
         //there for return with ! return true if in check
         return !maincheck(finish,board,yourcolor)
