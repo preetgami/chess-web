@@ -25,7 +25,7 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                 console.log(goingtopeice, "in king")
 
                 //check if king has moved and castling 
-                if (board[first.i][first.j].props.empty && last.j == 7 && board[last.i][last.j].props.piece == "\u2656" && board[last.i][last.j].props.empty){
+                if (board[first.i][first.j].props.empty  && board[last.i][last.j].props.piece == "\u2656" && board[last.i][last.j].props.empty){
                     //castle king side
                     console.log("here i am")
                     console.log(last.i == 0 && last.j == 7 && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty)
@@ -267,7 +267,7 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
             }
             else if (board[first.i][first.j].props.piece === "\u265A") {
                 console.log(King(first, last, 1, goingtopeice, goingtopeicecolor, board), "black")
-                if (board[first.i][first.j].props.empty && last.j == 7 && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty)  {
+                if (board[first.i][first.j].props.empty  && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty)  {
                     //castle king side
                     console.log("here i am")
                     console.log(last.i == 0 && last.j == 7 && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty)

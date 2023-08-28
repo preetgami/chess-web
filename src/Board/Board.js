@@ -5,13 +5,19 @@ import { useState } from 'react';
 import { handlePawnmovement } from '../Valid/Pawn/PawnMovement';
 import { handleRookmovement } from '../Valid/Rook/handlerookmovement';
 import { handleBishopmovement } from '../Valid/Bishop/handlebishopmovement';
-import PawnVisualizer from '../visualizer/pawns/Pawnvisualize';
 import { handleKnightmovement } from '../Valid/Knight/handleKnightmovement';
 import { handleQueenmovement } from '../Valid/Queen/handlequeen';
 import { handleKingmovement } from '../Valid/king/handlekingmovement';
 import { isyourkingincheck } from"../Valid/kingcheck";
 import { checkwinner } from '../winner/checkwinner';
+import { vizualizeoff } from '../visualizer/vizualizeoff';
+import { visualizeon } from '../visualizer/vizualizeon';
 
+import  Pawn  from '../Valid/Pawn/Pawn';
+import Rook from '../Valid/Rook/rook';
+import Bishop from '../Valid/Bishop/Bishop';
+import Knight from '../Valid/Knight/Knight';
+import King from '../Valid/king/King';
 function Board({turn,setTurn}) {
     //board
     const [board,setBoard]=useState([])
@@ -22,7 +28,6 @@ function Board({turn,setTurn}) {
     //what move is being done
     const [current, setcurrent] = useState([]);
     //VIS PAW
-    const [showPawnVisualizer, setShowPawnVisualizer] = useState(false);
 
 
     //currentking pos white
@@ -32,7 +37,7 @@ function Board({turn,setTurn}) {
 
     const [winner,setwinner]=useState(false)
     //winner
-
+    const [content, setContent] = useState(null);
 
     //done
     //castling
@@ -47,20 +52,7 @@ function Board({turn,setTurn}) {
     )
     
 }
-    useEffect(() => {
-        if (current.length === 1) {
-            let first = current[0];
-            console.log(board[first.i][first.j].props.piece)
-
-            if (board[first.i][first.j].props.piece === '\u2659' || board[first.i][first.j].props.piece === '\u265F') {
-                setShowPawnVisualizer(true);
-            } else {
-                setShowPawnVisualizer(false);
-            }
-        } else {
-            setShowPawnVisualizer(false);
-        }
-    }, [board, current]);
+    
   
     //handle movement
     //bishop
@@ -71,6 +63,10 @@ function Board({turn,setTurn}) {
         if (current.length === 2) {
             let first = current[0];
             console.log(board[first.i][first.j].props.piece)
+            console.log(board[first.i][first.j].props.piece)
+            if (board[first.i][first.j].props.piece != null) {
+                vizualizeoff(board,setBoard)
+            }
             let yourcolor= turn==1 ? "white" :"black"
 
             //if your king is in check you have to move it out
@@ -134,22 +130,37 @@ function Board({turn,setTurn}) {
         setBoard(newb)
     }, []);
 
-    let content = null
+
+    useEffect(() => {
+        if (current.length === 1) {
+            let first = current[0];
+            let yourcolor = turn == 1 ? "white" : "black"
+
+            console.log(board[first.i][first.j].props.piece)
+            if (board[first.i][first.j].props.piece != null) {
+                if (board[first.i][first.j].props.side==yourcolor){
+                visualizeon(first, board, setBoard, isyourkingincheck, Pawn, yourcolor, currentblackking, currentwhiteking,Rook,Bishop,Knight,King) 
+
+                }
+            }
+        }
+    }, [ current]);
     useEffect(()=>{
         if (current.length === 2) {
             let first = current[0];
             console.log(board[first.i][first.j].props.piece)
             let yourcolor = turn == 1 ? "white" : "black"
+            console.log(board,"winnner checkeerrrr123123")
             if(isyourkingincheck(board, yourcolor, currentblackking, currentwhiteking)){
                 if (checkwinner(board, isyourkingincheck, currentblackking, currentwhiteking, yourcolor)) {
                     let wincolor = yourcolor == "white" ? "black" : "white"
                     setwinner(true)
-                    content = <div className='winner'>winnerr {wincolor}</div>
+                    setContent(<div className='winner'>Check mate : {wincolor} wins</div>); 
                     console.log("winnerrrrr " + wincolor)
 
                 }
     }
-    }}, [current])
+    }}, [current,board,turn])
     console.log(winner,"wineer111",content)
 
     let wincolor = turn==1 ? "black" : "white"
@@ -158,14 +169,13 @@ function Board({turn,setTurn}) {
 
     return (
         <div className='center-board'>
-            {winner && <div className='winner'>winnerr {wincolor}</div>}
+            {content}
             Whose Turn: {turn}
             <div className='taken-peices'>
                 Black: 
                 {blacktakes}
 
             </div>
-            {showPawnVisualizer && <PawnVisualizer board={board} first={current[0]} setShowPawnVisualizer={setShowPawnVisualizer} />}
 
             <div  className="board-container">
                 {board.map((row, rowid) => (

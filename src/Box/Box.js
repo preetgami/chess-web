@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./Box.css"
-function Box({ i, j, piece,empty,reveal,side}) {
+function Box({ i, j, piece,empty,reveal,side,display}) {
     
     //i
     //j
@@ -21,6 +21,9 @@ function Box({ i, j, piece,empty,reveal,side}) {
         else { color = "beige"}
     }
 
+    if(display){
+        color ="#D25D5D"
+    }
     
 
   return (
