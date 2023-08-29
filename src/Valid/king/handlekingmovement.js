@@ -21,24 +21,24 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
             //check if is a white king
             //check valid king movement
             if (board[first.i][first.j].props.piece === "\u2654") {
-                console.log(King(first, last, 6, goingtopeice, goingtopeicecolor, board), "white")
-                console.log(goingtopeice, "in king")
+                //console.log(King(first, last, 6, goingtopeice, goingtopeicecolor, board), "white")
+                //console.log(goingtopeice, "in king")
 
                 //check if king has moved and castling 
                 if (board[first.i][first.j].props.empty  && board[last.i][last.j].props.piece == "\u2656" && board[last.i][last.j].props.empty){
                     //castle king side
-                    console.log("here i am")
-                    console.log(last.i == 0 && last.j == 7 && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty)
+                    //console.log("here i am")
+                    //console.log(last.i == 0 && last.j == 7 && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty)
                     if (last.i == 7 && last.j == 7 && board[last.i][last.j].props.piece == "\u2656" && board[last.i][last.j].props.empty
                         
                     ){
-                        console.log("vamos")
+                        //console.log("vamos")
                         let j=first.j+1
                         let tempboard = board.map(row => [...row]);
                         let color = tempboard[first.i][first.j].props.side
-                        console.log(color,color)
+                        //console.log(color,color)
                         while(j<=6){
-                            console.log(j)
+                            //console.log(j)
                             if (tempboard[first.i][j].props.piece == null){
                                 const updatedElement = React.cloneElement(tempboard[first.i][j], {
                                     ...tempboard[first.i][j].props,
@@ -58,8 +58,8 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                                 tempboard[first.i][j-1] = updatedElement2
                                 let currentwhiteking1=[first.i,j]
                                 let currentblackking1 = [first.i, j]
-                                console.log(tempboard,"temp")
-                                console.log(color )
+                                //console.log(tempboard,"temp")
+                                //console.log(color )
                                 
                                     if (isyourkingincheck(tempboard, color, currentblackking1, currentwhiteking1)) {
                                         return false
@@ -67,7 +67,7 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                                 
                             }
                             else{
-                                console.log("h yea h yeah")
+                                //console.log("h yea h yeah")
                                 return false
                             }
                             j+=1
@@ -78,9 +78,9 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                                 return false
                         }
                        
-                            console.log("Inside castle woow")
-                            console.log(last,first)
-                            console.log(board[last.i][last.j], board[first.i][first.j])
+                            //console.log("Inside castle woow")
+                            //console.log(last,first)
+                            //console.log(board[last.i][last.j], board[first.i][first.j])
                             const updatedElement = React.cloneElement(board[last.i][last.j], {
                                 ...board[last.i][last.j].props,
                                
@@ -126,14 +126,14 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                     }
                     //castle queen side
                     else if (last.i == 7 && last.j == 0 && board[last.i][last.j].props.piece == "\u2656" && board[last.i][last.j].props.empty) {
-                        console.log("vamos")
-                        console.log(first)
+                        //console.log("vamos")
+                        //console.log(first)
                         let j = first.j - 1
                         let tempboard = board.map(row => [...row]);
                         let color = tempboard[first.i][first.j].props.side
-                        console.log(color, color)
+                        //console.log(color, color)
                         while (j > 0) {
-                            console.log(j)
+                            //console.log(j)
                             if (tempboard[first.i][j].props.piece == null) {
                                 const updatedElement = React.cloneElement(tempboard[first.i][j], {
                                     ...tempboard[first.i][j].props,
@@ -153,8 +153,8 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                                 tempboard[first.i][j +1] = updatedElement2
                                 let currentwhiteking1 = [first.i, j]
                                 let currentblackking1 = [first.i, j]
-                                console.log(tempboard, "temp")
-                                console.log(color)
+                                //console.log(tempboard, "temp")
+                                //console.log(color)
 
                                 if (isyourkingincheck(tempboard, color, currentblackking1, currentwhiteking1)) {
                                     return false
@@ -162,7 +162,7 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
 
                             }
                             else {
-                                console.log("h yea h yeahsajkdhasjh")
+                                //console.log("h yea h yeahsajkdhasjh")
                                 return false
                             }
                             j -= 1
@@ -173,9 +173,9 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                             return false
                         }
                        
-                        console.log("Inside castle woow")
-                        console.log(last, first)
-                        console.log(board[last.i][last.j], board[first.i][first.j])
+                        //console.log("Inside castle woow")
+                        //console.log(last, first)
+                        //console.log(board[last.i][last.j], board[first.i][first.j])
                         const updatedElement = React.cloneElement(board[last.i][last.j+1], {
                             ...board[first.i][first.j + 1].props,
                             empty: false,
@@ -213,7 +213,7 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                         updatedBoard[first.i][first.j] = updatedElement4;
                         updatedBoard[last.i][last.j] = updatedElement3;
 
-                        console.log("updated peice", updatedElement2)
+                        //console.log("updated peice", updatedElement2)
                         setBoard(updatedBoard);
                         setcurrent([]);
                         setTurn(prev => prev == 1 ? 2 : 1)
@@ -228,11 +228,11 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                     if (board[first.i][first.j].props.side === 'white' && turn != 1) {
                         return false
                     }
-                    console.log("In white")
+                    //console.log("In white")
 
 
                     if (board[last.i][last.j].props.piece != null) {
-                        // console.log("here", board[last.i][last.j].props.piece)
+                        // //console.log("here", board[last.i][last.j].props.piece)
                         let taken = board[last.i][last.j].props.piece
                         setwhitetakes(prev => [...prev, taken])
 
@@ -266,21 +266,21 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
 
             }
             else if (board[first.i][first.j].props.piece === "\u265A") {
-                console.log(King(first, last, 1, goingtopeice, goingtopeicecolor, board), "black")
+                //console.log(King(first, last, 1, goingtopeice, goingtopeicecolor, board), "black")
                 if (board[first.i][first.j].props.empty  && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty)  {
                     //castle king side
-                    console.log("here i am")
-                    console.log(last.i == 0 && last.j == 7 && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty)
+                    //console.log("here i am")
+                    //console.log(last.i == 0 && last.j == 7 && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty)
                     if (last.i == 0 && last.j == 7 && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty
 
                     ) {
-                        console.log("vamos")
+                        //console.log("vamos")
                         let j = first.j + 1
                         let tempboard = board.map(row => [...row]);
                         let color = tempboard[first.i][first.j].props.side
-                        console.log(color, color)
+                        //console.log(color, color)
                         while (j <= 6) {
-                            console.log(j)
+                            //console.log(j)
                             if (tempboard[first.i][j].props.piece == null) {
                                 const updatedElement = React.cloneElement(tempboard[first.i][j], {
                                     ...tempboard[first.i][j].props,
@@ -300,8 +300,8 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                                 tempboard[first.i][j - 1] = updatedElement2
                                 let currentwhiteking1 = [first.i, j]
                                 let currentblackking1 = [first.i, j]
-                                console.log(tempboard, "temp")
-                                console.log(color)
+                                //console.log(tempboard, "temp")
+                                //console.log(color)
 
                                 if (isyourkingincheck(tempboard, color, currentblackking1, currentwhiteking1)) {
                                     return false
@@ -309,7 +309,7 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
 
                             }
                             else {
-                                console.log("h yea h yeah")
+                                //console.log("h yea h yeah")
                                 return false
                             }
                             j += 1
@@ -322,9 +322,9 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                         if (board[first.i][first.j].props.side === 'black' && turn != 2) {
                             return false
                         }
-                        console.log("Inside castle woow")
-                        console.log(last, first)
-                        console.log(board[last.i][last.j], board[first.i][first.j])
+                        //console.log("Inside castle woow")
+                        //console.log(last, first)
+                        //console.log(board[last.i][last.j], board[first.i][first.j])
                         const updatedElement = React.cloneElement(board[last.i][last.j], {
                             ...board[last.i][last.j].props,
 
@@ -370,14 +370,14 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                     }
                     //castle queen side
                     else if (last.i == 0 && last.j == 0 && board[last.i][last.j].props.piece == "\u265C" && board[last.i][last.j].props.empty) {
-                        console.log("vamos")
-                        console.log(first)
+                        //console.log("vamos")
+                        //console.log(first)
                         let j = first.j - 1
                         let tempboard = board.map(row => [...row]);
                         let color = tempboard[first.i][first.j].props.side
-                        console.log(color, color)
+                        //console.log(color, color)
                         while (j > 0) {
-                            console.log(j)
+                            //console.log(j)
                             if (tempboard[first.i][j].props.piece == null) {
                                 const updatedElement = React.cloneElement(tempboard[first.i][j], {
                                     ...tempboard[first.i][j].props,
@@ -397,8 +397,8 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                                 tempboard[first.i][j + 1] = updatedElement2
                                 let currentwhiteking1 = [first.i, j]
                                 let currentblackking1 = [first.i, j]
-                                console.log(tempboard, "temp")
-                                console.log(color)
+                                //console.log(tempboard, "temp")
+                                //console.log(color)
 
                                 if (isyourkingincheck(tempboard, color, currentblackking1, currentwhiteking1)) {
                                     return false
@@ -406,7 +406,7 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
 
                             }
                             else {
-                                console.log("h yea h yeahsajkdhasjh")
+                                //console.log("h yea h yeahsajkdhasjh")
                                 return false
                             }
                             j -= 1
@@ -417,9 +417,9 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                             return false
                         }
 
-                        console.log("Inside castle woow")
-                        console.log(last, first)
-                        console.log(board[last.i][last.j], board[first.i][first.j])
+                        //console.log("Inside castle woow")
+                        //console.log(last, first)
+                        //console.log(board[last.i][last.j], board[first.i][first.j])
                         const updatedElement = React.cloneElement(board[last.i][last.j + 1], {
                             ...board[first.i][first.j + 1].props,
                             empty: false,
@@ -457,7 +457,7 @@ export function handleKingmovement(board, current, setBoard, setcurrent, setwhit
                         updatedBoard[first.i][first.j] = updatedElement4;
                         updatedBoard[last.i][last.j] = updatedElement3;
 
-                        console.log("updated peice", updatedElement2)
+                        //console.log("updated peice", updatedElement2)
                         setBoard(updatedBoard);
                         setcurrent([]);
                         setTurn(prev => prev == 1 ? 2 : 1)

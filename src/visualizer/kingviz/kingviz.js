@@ -14,7 +14,7 @@ export function kingviz(first, board, setBoard, isKingInCheck, King, yourcolor, 
                 continue
             }
             let goingtopeice = board[finish.i][finish.j].props.piece
-            console.log("king alllowed to move here")
+            //console.log("king alllowed to move here")
 
             let color = board[finish.i][finish.j].props.side
 
@@ -45,12 +45,12 @@ export function kingviz(first, board, setBoard, isKingInCheck, King, yourcolor, 
                     continue
                 }
                 let goingtopeice = board[finish.i][finish.j].props.piece
-                console.log("king castle alllowed to move here",goingtopeice,dy,dx)
+                //console.log("king castle alllowed to move here",goingtopeice,dy,dx)
 
                 let color = board[finish.i][finish.j].props.side
 
                 if (cankingcastle(board, first, finish, isKingInCheck)) {
-                    console.log("castle allowed,", dy,dx)
+                    //console.log("castle allowed,", dy,dx)
 
                     const updatedElement2 = React.cloneElement(board[finish.i][finish.j], {
                         ...board[finish.i][finish.j].props,

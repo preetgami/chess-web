@@ -21,13 +21,13 @@ if (current.length === 2) {
         //check if is a white pawn
         //check valid pawn movement
         if (board[first.i][first.j].props.piece === "\u2659") {
-            console.log(Pawn(first, last, 6, goingtopeice,goingtopeicecolor), "white")
-            console.log(goingtopeice)
+            //console.log(Pawn(first, last, 6, goingtopeice,goingtopeicecolor), "white")
+            //console.log(goingtopeice)
             if (Pawn(first, last, 6, goingtopeice,goingtopeicecolor)) {
                 if (board[first.i][first.j].props.side==='white' && turn!=1){
                     return false
                 }
-                console.log("In white")
+                //console.log("In white")
                 //case when enpassent
                 if (first.j !== last.j && board[first.i][last.j].props.piece != null && board[first.i][last.j].props.side !=="white" && last.i===2) {
                     const updatedElement = React.cloneElement(board[last.i][last.j], {
@@ -46,7 +46,7 @@ if (current.length === 2) {
                         piece: null,
                         side:null
                     })
-                    console.log("In passent")
+                    //console.log("In passent")
                     //console.log("here pass", board[first.i][last.j].props.piece)
                     
                     // console.log(whitetakes)
@@ -69,7 +69,7 @@ if (current.length === 2) {
                         const selectedPromotion = prompt("Choose a piece to promote to: " + promotionOptions.join(", "));
 
                         if (promotionOptions.includes(selectedPromotion)) {
-                            console.log("seleceted")
+                            //console.log("seleceted")
                             // Create the new piece element based on the selected promotion
                             let piece=null
                             switch(selectedPromotion){
@@ -151,7 +151,7 @@ if (current.length === 2) {
 
         }
         if (board[first.i][first.j].props.piece === "\u265F") {
-            console.log(Pawn(first, last, 1, goingtopeice, goingtopeicecolor), "black")
+            //console.log(Pawn(first, last, 1, goingtopeice, goingtopeicecolor), "black")
             if (Pawn(first, last, 1, goingtopeice,goingtopeicecolor)) {
                 if (board[first.i][first.j].props.side === 'black' && turn != 2) {
                     return false
@@ -197,7 +197,7 @@ if (current.length === 2) {
                         const selectedPromotion = prompt("Choose a piece to promote to: " + promotionOptions.join(", "));
 
                         if (promotionOptions.includes(selectedPromotion)) {
-                            console.log("seleceted")
+                            //console.log("seleceted")
                             // Create the new piece element based on the selected promotion
                             let piece = null
                             switch (selectedPromotion) {

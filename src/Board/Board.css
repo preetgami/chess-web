@@ -2,7 +2,7 @@
     display: flex;
 }
 .center-board{
-  transform: translate(30vw, 1vh);
+  transform: translate(10vw, 1vh);
   padding: 0px;
   position: absolute;
 

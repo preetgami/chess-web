@@ -1,11 +1,11 @@
 import React from "react";
 export function checkwinner(board, isyourkingincheck, currentblackking, currentwhiteking, yourColor){
     const isKingInCheck = isyourkingincheck(board, yourColor, currentblackking, currentwhiteking);
-    console.log("win checker")
+    //console.log("win checker")
     // Checkmate: Your king is in check and you have no legal moves to get out of check
-    console.log(canMoveOutOfCheck(board, yourColor, currentblackking, currentwhiteking, isyourkingincheck),"can move king out")
+    //console.log(canMoveOutOfCheck(board, yourColor, currentblackking, currentwhiteking, isyourkingincheck),"can move king out")
     if (isKingInCheck && !canMoveOutOfCheck(board, yourColor, currentblackking, currentwhiteking, isyourkingincheck)) {
-        console.log("Innnnnnnn")
+        //console.log("Innnnnnnn")
         return true;
     }
 
@@ -23,7 +23,7 @@ export function checkwinner(board, isyourkingincheck, currentblackking, currentw
 function canMoveOutOfCheck(board, yourColor, currentBlackKing, currentWhiteKing, isyourkingincheck) {
     //const tempboard = board.map(row => [...row]);
     let cords = yourColor=="white"?currentWhiteKing:currentBlackKing
-    console.log(cords,"cordss",board)
+    //console.log(cords,"cordss",board)
     const kingRow = cords[0]
     const kingCol=cords[1]
 
@@ -33,12 +33,12 @@ function canMoveOutOfCheck(board, yourColor, currentBlackKing, currentWhiteKing,
             if (dr === 0 && dc === 0) {
                 continue; // Skip the king's position
             }
-            console.log("Insde for loop")
+            //console.log("Insde for loop")
             const tempboard = board.map(row => [...row]);
 
             const newRow = kingRow + dr;
             const newCol = kingCol + dc;
-            console.log(newRow, newCol)
+            //console.log(newRow, newCol)
 
 
             // Check if the new position is within the board boundaries
@@ -63,7 +63,7 @@ function canMoveOutOfCheck(board, yourColor, currentBlackKing, currentWhiteKing,
                     tempboard[kingRow][kingCol] = updatedElement2
                     let currentwhiteking1 = [newRow,newCol]
                     let currentblackking1 = [newRow,newCol]
-                    console.log(tempboard, "temppp", kingRow, kingCol)
+                    //console.log(tempboard, "temppp", kingRow, kingCol)
 
                     //console.log(tempboard, "temp")
                     //console.log(color)

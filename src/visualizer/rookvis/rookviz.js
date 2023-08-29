@@ -8,7 +8,7 @@ export function rookviz(first, board, setBoard, isKingInCheck, Rook, yourcolor, 
                 continue
             }
             let goingtopeice = board[finish.i][finish.j].props.piece
-            console.log("rook alllowed to move here")
+            //console.log("rook alllowed to move here")
 
             let color = board[finish.i][finish.j].props.side
 
@@ -54,7 +54,7 @@ export function rookviz(first, board, setBoard, isKingInCheck, Rook, yourcolor, 
                 continue
             }
             let goingtopeice = board[finish.i][finish.j].props.piece
-            console.log("rook alllowed to move here")
+            //console.log("rook alllowed to move here")
 
             let color = board[finish.i][finish.j].props.side
 
@@ -100,7 +100,7 @@ export function rookviz(first, board, setBoard, isKingInCheck, Rook, yourcolor, 
                 continue
             }
             let goingtopeice = board[finish.i][finish.j].props.piece
-            console.log("rook alllowed to move here")
+            //console.log("rook alllowed to move here")
 
             let color = board[finish.i][finish.j].props.side
 
@@ -146,7 +146,7 @@ export function rookviz(first, board, setBoard, isKingInCheck, Rook, yourcolor, 
                 continue
             }
             let goingtopeice = board[finish.i][finish.j].props.piece
-            console.log("rook alllowed to move here")
+            //console.log("rook alllowed to move here")
 
             let color = board[finish.i][finish.j].props.side
 

@@ -21,13 +21,13 @@ export function handleKnightmovement(board, current, setBoard, setcurrent, setwh
             //check if is a white knight
             //check valid knight movement
             if (board[first.i][first.j].props.piece === "\u2658") {
-                console.log(Knight(first, last, 6, goingtopeice, goingtopeicecolor, board), "white")
-                console.log(goingtopeice, "in knight")
+                //console.log(Knight(first, last, 6, goingtopeice, goingtopeicecolor, board), "white")
+                //console.log(goingtopeice, "in knight")
                 if (Knight(first, last, 6, goingtopeice, goingtopeicecolor, board)) {
                     if (board[first.i][first.j].props.side === 'white' && turn != 1) {
                         return false
                     }
-                    console.log("In white")
+                    //console.log("In white")
 
 
                    
@@ -50,7 +50,7 @@ export function handleKnightmovement(board, current, setBoard, setcurrent, setwh
 
                     if (!isyourkingincheck(updatedBoard, "white", currentblackking, currentwhiteking)) {
                         if (board[last.i][last.j].props.piece != null) {
-                            // console.log("here", board[last.i][last.j].props.piece)
+                            // //console.log("here", board[last.i][last.j].props.piece)
                             let taken = board[last.i][last.j].props.piece
                             setwhitetakes(prev => [...prev, taken])
 
@@ -64,7 +64,7 @@ export function handleKnightmovement(board, current, setBoard, setcurrent, setwh
 
             }
             else if (board[first.i][first.j].props.piece === "\u265E") {
-                console.log(Knight(first, last, 1, goingtopeice, goingtopeicecolor, board), "black")
+                //console.log(Knight(first, last, 1, goingtopeice, goingtopeicecolor, board), "black")
                 if (Knight(first, last, 1, goingtopeice, goingtopeicecolor, board)) {
                     if (board[first.i][first.j].props.side === 'black' && turn != 2) {
                         return false

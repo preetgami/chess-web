@@ -22,7 +22,7 @@ export function knightviz(first, board, setBoard, isKingInCheck, Knight, yourcol
                 continue
             }
             let goingtopeice = board[finish.i][finish.j].props.piece
-            console.log("knight alllowed to move here")
+            //console.log("knight alllowed to move here")
 
             let color = board[finish.i][finish.j].props.side
 

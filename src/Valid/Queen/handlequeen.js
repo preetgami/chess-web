@@ -22,13 +22,13 @@ export function handleQueenmovement(board, current, setBoard, setcurrent, setwhi
             //check if is a white queen
             //check valid queen movement
             if (board[first.i][first.j].props.piece === "\u2655") {
-                console.log(Queen(first, last, 6, goingtopeice, goingtopeicecolor, board), "white")
-                console.log(goingtopeice, "in Queen")
+                //console.log(Queen(first, last, 6, goingtopeice, goingtopeicecolor, board), "white")
+                //console.log(goingtopeice, "in Queen")
                 if (Queen(first, last, 6, goingtopeice, goingtopeicecolor, board)) {
                     if (board[first.i][first.j].props.side === 'white' && turn != 1) {
                         return false
                     }
-                    console.log("In white")
+                    //console.log("In white")
 
 
                     
@@ -65,7 +65,7 @@ export function handleQueenmovement(board, current, setBoard, setcurrent, setwhi
 
             }
             else if (board[first.i][first.j].props.piece === "\u265B") {
-                console.log(Queen(first, last, 1, goingtopeice, goingtopeicecolor, board), "black")
+                //console.log(Queen(first, last, 1, goingtopeice, goingtopeicecolor, board), "black")
                 if (Queen(first, last, 1, goingtopeice, goingtopeicecolor, board)) {
                     if (board[first.i][first.j].props.side === 'black' && turn != 2) {
                         return false

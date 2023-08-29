@@ -3,13 +3,13 @@ export function pawnviz(first, board, setBoard, isKingInCheck, Pawn, yourcolor, 
     if (board[first.i][first.j].props.piece == "\u2659" || board[first.i][first.j].props.piece == "\u265F") {
         for (let i = 0; i <= 2; i++) {
             let addition = yourcolor == "white" ? i : i * (-1)
-            console.log(addition, "add")
+            //console.log(addition, "add")
             let finish = { i: first.i - addition, j: first.j }
             if (!(finish.i >= 0 && finish.i <= 7 && finish.j <= 7 && finish.j >= 0)) {
                 continue
             }
             let goingtopeice = board[finish.i][finish.j].props.piece
-            console.log("pawn alllowed to move here")
+            //console.log("pawn alllowed to move here")
 
             let color = board[finish.i][finish.j].props.side
 
@@ -56,9 +56,9 @@ export function pawnviz(first, board, setBoard, isKingInCheck, Pawn, yourcolor, 
             if (!(finish.i >= 0 && finish.i <= 7 && finish.j <= 7 && finish.j >= 0)) {
                 continue
             }
-            console.log(finish)
+            //console.log(finish)
             let goingtopeice = board[finish.i][finish.j].props.piece
-            console.log("pawn alllowed to move here,side")
+            //console.log("pawn alllowed to move here,side")
 
             let color = board[finish.i][finish.j].props.side
             let row = yourcolor == "white" ? 6 : 1

@@ -2,7 +2,7 @@ export default function Bishop(start, finish, row, goingtopeice, color, board) {
     //white pawn
     //is king in check? then return false automatically, addition param for check
     //going to king then false
-    console.log(board)
+    //console.log(board)
 
     if (goingtopeice === "\u265A" || goingtopeice === "\u2654") {
         return false
@@ -24,7 +24,7 @@ export default function Bishop(start, finish, row, goingtopeice, color, board) {
         let colstep = start.j < finish.j ? 1 : -1
 
         for (let i=start.i+rowstep,j=start.j+colstep;i!=finish.i;i+=rowstep,j+=colstep){
-            console.log(i,j)
+            //console.log(i,j)
             if (board[i][j].props.piece != null) {
                 return false
 

@@ -19,10 +19,10 @@ export default function Rook(start, finish, row, goingtopeice, color,board) {
     
     if (start.i==finish.i){
         if (start.j<finish.j){
-            console.log("same horiz, left to right")
+            //console.log("same horiz, left to right")
 
             for (let x = start.j+1; x < finish.j; x++) {
-                console.log(x)
+                //console.log(x)
 
 
 
@@ -34,10 +34,10 @@ export default function Rook(start, finish, row, goingtopeice, color,board) {
     
         }
         else{
-            console.log("same horiz, right to left")
+            //console.log("same horiz, right to left")
 
                 for (let x = start.j-1; x >finish.j; x--) {
-                    console.log(x)
+                    //console.log(x)
                     if (board[start.i][x].props.piece != null) {
                         return false
                     }
@@ -47,10 +47,10 @@ export default function Rook(start, finish, row, goingtopeice, color,board) {
         }
     } else if (start.j == finish.j){
         if (start.i <finish.i)  {
-            console.log("same vert, up to dwon")
+            //console.log("same vert, up to dwon")
 
                 for (let x = start.i + 1; x < finish.i; x++) {
-                    console.log(x)
+                    //console.log(x)
 
 
                     if (board[x][start.j].props.piece != null) {
@@ -60,10 +60,10 @@ export default function Rook(start, finish, row, goingtopeice, color,board) {
                 return true
 
             } else {
-                console.log("same vert, down  to up")
+                //console.log("same vert, down  to up")
 
                 for (let x = start.i - 1; x > finish.i; x--) {
-                    console.log(x)
+                    //console.log(x)
                     if (board[x][start.j].props.piece != null) {
                         return false
                     }

@@ -11,7 +11,7 @@ export function bishopviz(first, board, setBoard, isKingInCheck, Bishop, yourcol
                     continue
                 }
                 let goingtopeice = board[finish.i][finish.j].props.piece
-                console.log("bishop alllowed to move here")
+                //console.log("bishop alllowed to move here")
 
                 let color = board[finish.i][finish.j].props.side
 

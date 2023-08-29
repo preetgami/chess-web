@@ -16,17 +16,17 @@ export function handleBishopmovement(board, current, setBoard, setcurrent, setwh
             let goingtopeice = board[last.i][last.j].props.piece
             let goingtopeicecolor = board[last.i][last.j].props.side
             //console.log(board[first.i][first.j],"color")
-            console.log("step1")
+            //console.log("step1")
             //check if is a white bishop
             //check valid bishop movement
             if (board[first.i][first.j].props.piece === "\u2657") {
-                console.log(Bishop(first, last, 6, goingtopeice, goingtopeicecolor, board), "white")
-                console.log(goingtopeice, "in bishop")
+                //console.log(Bishop(first, last, 6, goingtopeice, goingtopeicecolor, board), "white")
+                //console.log(goingtopeice, "in bishop")
                 if (Bishop(first, last, 6, goingtopeice, goingtopeicecolor, board)) {
                     if (board[first.i][first.j].props.side === 'white' && turn != 1) {
                         return false
                     }
-                    console.log("In white")
+                    //console.log("In white")
 
 
                     
@@ -61,7 +61,7 @@ export function handleBishopmovement(board, current, setBoard, setcurrent, setwh
 
             }
         }else if (board[first.i][first.j].props.piece === "\u265D") {
-                console.log(Bishop(first, last, 1, goingtopeice, goingtopeicecolor, board), "black")
+                //console.log(Bishop(first, last, 1, goingtopeice, goingtopeicecolor, board), "black")
                 if (Bishop(first, last, 1, goingtopeice, goingtopeicecolor, board)) {
                     if (board[first.i][first.j].props.side === 'black' && turn != 2) {
                         return false
